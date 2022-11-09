@@ -1,0 +1,42 @@
+#include <stdio.h>
+#define N 8
+
+int main() {
+    
+    int x[N] = { 0 , 0 , 0 , 0 , 1 , 1 , 1 , 1 };
+    int y[N] = { 0 , 0 , 1 , 1 , 0 , 0 , 1 , 1 };
+    int z[N] = { 0 , 1 , 0 , 1 , 0 , 1 , 0 , 1 };
+    int XorY[N] = {0};
+    int notZ[N] = {0};
+    int XorYorZ[N] = {0};
+    int notX[N] = {0};
+    int notXimplY[N] = {0};
+    int XorYorZnotXimplY[N] = {0};
+    int notXorYorZnotXimplY[N] = {0};
+    
+    printf ("x[N] y[N] z[N] XorY[N] notZ[N] XorYorZ[N] notX[N] notXimplY[N] notXorYorZnotXimplY[N]\n");
+    
+    for(int i = 0 ; i < N ; i++){
+        
+        if( ( x[i] == 0 & y[i] == 1 ) || ( x[i] == 1 & y[i] == 0 ) || ( x[i] == 1 & y[i] == 1 )) XorY[i] += 1;
+        else XorY[i] = 0; 
+        
+        if ( z[i] == 1) notZ[i] = 1;
+        else notZ[i] = 0;
+        
+        if (( XorY[i] == 0 & z[i] == 1 ) || ( XorY[i] == 1 & z[i] == 0 ) || ( XorY[i] == 1 & z[i] == 1 )) XorYorZ[i] = 1 ;
+        else XorYorZ[i] = 0 ;
+        
+        if ( x[i] == 1) notX[i] = 1;
+        else notX[i] = 0;
+        
+        if( (notX[i] == 1 & y[i] == 0) || (notX[i] == 0 & y[i] == 1) || ( notX[i] == 1 & y[i] == 1 )) notXimplY[i] = 1;
+        else notXimplY[i] = 0;
+        
+        if( (XorYorZ[i] == 1 & notXimplY[i] == 0) || (XorYorZ[i] == 0 & notXimplY[i] == 1) || ( XorYorZ[i] == 1 & notXimplY[i] == 1 )) notXorYorZnotXimplY[i] = 1;
+        else notXorYorZnotXimplY[N] = 0;
+        
+        
+        printf("  %d    %d    %d \t %d        %d        %d        %d         %d                  %d\n", x[i] , y[i] , z[i] , XorY[i] , notZ[i] , XorYorZ[i] , notX[i] , notXimplY[i] , notXorYorZnotXimplY[i]);
+    }
+}
