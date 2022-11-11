@@ -8,35 +8,38 @@ int main() {
     int z[N] = { 0 , 1 , 0 , 1 , 0 , 1 , 0 , 1 };
     int XorY[N] = {0};
     int notZ[N] = {0};
-    int XorYorZ[N] = {0};
+    int XorYornotZ[N] = {0};
     int notX[N] = {0};
     int notXimplY[N] = {0};
-    int XorYorZnotXimplY[N] = {0};
-    int notXorYorZnotXimplY[N] = {0};
+    int XorYornotZimplnotXimplY[N] = {0};
+    int notXorYornotZimplnotXimplY[N] = {0};
     
-    printf ("x[N] y[N] z[N] XorY[N] notZ[N] XorYorZ[N] notX[N] notXimplY[N] notXorYorZnotXimplY[N]\n");
+    printf ("x y z XorY notZ XorYornotZ notX notXimplY XorYornotZimplnotXimplY notXorYornotZimplnotXimplY\n");
     
     for(int i = 0 ; i < N ; i++){
         
         if( ( x[i] == 0 & y[i] == 1 ) || ( x[i] == 1 & y[i] == 0 ) || ( x[i] == 1 & y[i] == 1 )) XorY[i] += 1;
         else XorY[i] = 0; 
         
-        if ( z[i] == 1) notZ[i] = 1;
-        else notZ[i] = 0;
+        if ( z[i] == 1) notZ[i] = 0;
+        else notZ[i] = 1;
         
-        if (( XorY[i] == 0 & z[i] == 1 ) || ( XorY[i] == 1 & z[i] == 0 ) || ( XorY[i] == 1 & z[i] == 1 )) XorYorZ[i] = 1 ;
-        else XorYorZ[i] = 0 ;
+        if (( XorY[i] == 0 & notZ[i] == 1 ) || ( XorY[i] == 1 & notZ[i] == 0 ) || ( XorY[i] == 1 & notZ[i] == 1 )) XorYornotZ[i] = 1 ;
+        else XorYornotZ[i] = 0 ;
         
-        if ( x[i] == 1) notX[i] = 1;
-        else notX[i] = 0;
+        if ( x[i] == 1) notX[i] = 0;
+        else notX[i] = 1;
         
-        if( (notX[i] == 1 & y[i] == 0) || (notX[i] == 0 & y[i] == 1) || ( notX[i] == 1 & y[i] == 1 )) notXimplY[i] = 1;
+        if( (notX[i] == 1 & y[i] == 1) || (notX[i] == 0 & y[i] == 0) || (notX[i] == 0 & y[i] == 1)) notXimplY[i] = 1;
         else notXimplY[i] = 0;
         
-        if( (XorYorZ[i] == 1 & notXimplY[i] == 0) || (XorYorZ[i] == 0 & notXimplY[i] == 1) || ( XorYorZ[i] == 1 & notXimplY[i] == 1 )) notXorYorZnotXimplY[i] = 1;
-        else notXorYorZnotXimplY[N] = 0;
+        if( (XorYornotZ[i] == 1 & notXimplY[i] == 1) || (XorYornotZ[i] == 0 & notXimplY[i] == 0) || ( XorYornotZ[i] == 0 & notXimplY[i] == 1 )) XorYornotZimplnotXimplY[i] = 1;
+        else XorYornotZimplnotXimplY[i] = 0;
+        
+        if ( XorYornotZimplnotXimplY[i] == 1) notXorYornotZimplnotXimplY[i] = 0;
+        else notXorYornotZimplnotXimplY[i] = 1;
         
         
-        printf("  %d    %d    %d \t %d        %d        %d        %d         %d                  %d\n", x[i] , y[i] , z[i] , XorY[i] , notZ[i] , XorYorZ[i] , notX[i] , notXimplY[i] , notXorYorZnotXimplY[i]);
+        printf("%d %d %d   %d    %d     %d        %d       %d               %d                    %d\n", x[i] , y[i] , z[i] , XorY[i] , notZ[i] , XorYornotZ[i] , notX[i] , notXimplY[i] , XorYornotZimplnotXimplY[i] , notXorYornotZimplnotXimplY[i]);
     }
 }
